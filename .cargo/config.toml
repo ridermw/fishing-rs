@@ -1,0 +1,3 @@
+[target.wasm32-unknown-unknown]
+# JS-provided imports (miniquad gl.js, quad-snd audio.js and our storage plugin) resolve at load time.
+rustflags = ["-C", "link-arg=--allow-undefined"]

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>Driftmoor Cove · Rust edition</title>
+  <meta name="description" content="A cozy HD-2D fishing game written in Rust and compiled to WebAssembly. Every texture, sprite and sound is generated in code.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>🦀</text></svg>">
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #0b1230; touch-action: none; }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; outline: none; display: block; }
+    #loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; color: #f6ecd2;
+      font: 600 20px ui-monospace, Menlo, monospace; letter-spacing: 2px; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <canvas id="glcanvas" tabindex="1"></canvas>
+  <div id="loading">LOADING DRIFTMOOR COVE...</div>
+  <noscript>This game needs JavaScript, WebAssembly and WebGL2.</noscript>
+  <script src="gl.js"></script>
+  <script src="audio.js"></script>
+  <script src="driftmoor.js"></script>
+  <script>
+    load("driftmoor.wasm");
+    const hide = () => { if (window.__dm) document.getElementById("loading").remove(); else setTimeout(hide, 100); };
+    hide();
+    document.getElementById("glcanvas").focus();
+  </script>
+</body>
+</html>
